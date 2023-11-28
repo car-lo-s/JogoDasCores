@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+    <div class="text">
+        <h1>Jogo das cores.</h1>
+        <p>Quantidade de vidas: <span>3</span> restantes. </p>
+        <h2>...</h2>
+    </div>
+    <div class="box">
+        <div class="miniBox" id="0"></div>
+        <div class="miniBox" id="1"></div>
+        <div class="miniBox" id="2"></div>
+        <div class="miniBox" id="3"></div>
+        <div class="miniBox" id="4"></div>
+        <div class="miniBox" id="5"></div>
+        <div class="miniBox" id="6"></div>
+        <div class="miniBox" id="7"></div>
+        <div class="miniBox" id="8"></div>
+        <div class="miniBox" id="9"></div>
+    </div>
+    
+</body>
+<script>
+    let cores = [
+    "#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#FF00FF", "#00FFFF",  
+    "#800000", "#008000", "#000080", "#808000", "#800080", "#008080",  
+    "#C0C0C0", "#808080", "#FFA500", "#A52A2A", "#800000", "#008000",  
+    "#ADD8E6", "#FFD700", "#20B2AA", "#7FFFD4", "#8A2BE2", "#6A5ACD",  
+    "#FF6347", "#40E0D0", "#EE82EE", "#4682B4", "#F0E68C", "#DAA520",  
+    "#B0C4DE", "#F08080", "#00FA9A", "#9370DB", "#48D1CC", "#FF69B4",  
+    "#66CDAA", "#8B008B", "#4B0082", "#87CEEB", "#2E8B57", "#9400D3",   
+    "#66CDAA", "#8B008B", "#4B0082", "#87CEEB", "#2E8B57", "#9400D3",  
+    "#FF4500", "#DA70D6", "#8FBC8F", "#FFDAB9", "#32CD32", "#00FF7F",  
+    "#00008B", "#B8860B", "#556B2F", "#8B4513", "#483D8B", "#2F4F4F",  
+    "#D2691E", "#5F9EA0", "#9ACD32", "#7FFF00", "#8B0000", "#7CFC00",  
+    "#A9A9A9", "#32CD32", "#FA8072", "#00BFFF", "#66CDAA", "#BA55D3",
+    "#FFE4C4", "#40E0D0", "#FAFAD2", "#808000", "#6B8E23", "#FF8C00",
+    "#FF1493", "#FF4500", "#FF6347", "#FF69B4", "#FF7F50", "#FF8C00",
+    "#FFA07A", "#FFA500", "#FFB6C1", "#FFC0CB", "#FFD700", "#FFDAB9",
+    "#FFDEAD", "#FFE4C4", "#FFE4E1", "#FFEBCD", "#FFEFD5", "#FFFACD",
+    "#FFFAF0", "#FFF8DC", "#FFF5EE", "#FFF0F5", "#FFE4B5", "#FFE4C4",
+    "#FFE4E1", "#FFEBCD", "#FFF0F5", "#FFF5EE", "#FFF8DC", "#FFFAF0",
+    "#FFFAFA", "#F0F8FF", "#F8F8FF", "#F0FFF0", "#F0FFFF", "#F5F5DC",
+    "#F5F5F5", "#F5FFFA", "#F8F8FF", "#FAEBD7", "#FAF0E6", "#FAFAD2",
+    "#FAFAFA", "#FCFCFC", "#FDF5E6", "#FF0000", "#FF00FF", "#FF4500",
+    "#FF6347", "#FF69B4", "#FF7F50", "#FF8C00", "#FFA07A", "#FFA500",
+    "#FFB6C1", "#FFC0CB", "#FFD700", "#FFDAB9", "#FFDEAD", "#FFE4C4",
+    "#FFE4E1", "#FFEBCD", "#FFEFD5", "#FFF0F5", "#FFF5EE", "#FFF8DC",
+    "#FFFAF0", "#FFFAFA", "#F0F8FF", "#F8F8FF", "#F0FFF0", "#F0FFFF",
+    "#F5F5DC", "#F5F5F5", "#F5FFFA", "#F8F8FF", "#FAEBD7", "#FAF0E6",
+    "#FAFAD2", "#FAFAFA", "#FCFCFC", "#FDF5E6"
+]
+let coresAleatoria = []
+let posicao 
+let respostaCerta
+let box = document.querySelectorAll(".miniBox")
+let quantVida = 3;
+let textoVida = document.querySelector(".text p span")
+
+
+for(let i = 0; i < 10; i++){
+    posicao = Math.floor(Math.random() * cores.length);
+    coresAleatoria.push(cores[posicao])
+}
+
+respostaCerta = Math.floor(Math.random() * coresAleatoria.length-1);
+
+for(let i = 0; i < 10; i++){
+    box[i].style.backgroundColor = coresAleatoria[i];
+}
+
+
+
+box.forEach(function(div, indice) {
+    div.addEventListener('click', function() {
+        if (indice == respostaCerta){
+            document.querySelector("body").style.backgroundColor = coresAleatoria[respostaCerta]
+            document.querySelector(".text h2").textContent = "ACERTOU!!!!!"
+            setTimeout(() => {
+                location.reload();
+            }, 1000);
+        }else{
+            quantVida--;
+            if(quantVida <=0){
+                document.querySelector(".text h2").textContent = "VOCE MORREU!!!! reiniciando"
+                setTimeout(() => {
+                location.reload();
+            }, 1000);
+            }
+        }
+        textoVida.innerHTML= quantVida 
+    });
+});
+
+
+
+</script>
+</html>

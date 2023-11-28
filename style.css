@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.box{
+    width: 700px;
+    height: 350px;
+    box-shadow: 2px 2px 5px lightslategray;
+    border-radius: 5px;
+    margin: 70px auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+}
+.miniBox{
+    width: 120px;
+    height: 120px;
+    border: 1px solid black;
+    margin: 5px;
+    cursor: pointer;
+}
+.text{
+    margin-top: 50px;
+    text-align: center;
+}
+.text p{
+    margin: 20px;
+}
